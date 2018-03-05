@@ -1,0 +1,37 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+  <EntityContainerMapping StorageEntityContainer="WebCrudDBModelStoreContainer" CdmEntityContainer="WebCrudDBEntities">
+    <EntitySetMapping Name="Car">
+      <EntityTypeMapping TypeName="WebCrudDBModel.Car">
+        <MappingFragment StoreEntitySet="Car">
+          <ScalarProperty Name="car_id" ColumnName="car_id" />
+          <ScalarProperty Name="model" ColumnName="model" />
+          <ScalarProperty Name="color" ColumnName="color" />
+          <ScalarProperty Name="doors_num" ColumnName="doors_num" />
+          <ScalarProperty Name="year" ColumnName="year" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="RentOrder">
+      <EntityTypeMapping TypeName="WebCrudDBModel.RentOrder">
+        <MappingFragment StoreEntitySet="RentOrder">
+          <ScalarProperty Name="car_id" ColumnName="car_id" />
+          <ScalarProperty Name="drop_off_date" ColumnName="drop_off_date" />
+          <ScalarProperty Name="pick_up_date" ColumnName="pick_up_date" />
+          <ScalarProperty Name="phone_num" ColumnName="phone_num" />
+          <ScalarProperty Name="customer_name" ColumnName="customer_name" />
+          <ScalarProperty Name="customer_id" ColumnName="customer_id" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="User">
+      <EntityTypeMapping TypeName="WebCrudDBModel.User">
+        <MappingFragment StoreEntitySet="User">
+          <ScalarProperty Name="password" ColumnName="password" />
+          <ScalarProperty Name="customer_name" ColumnName="customer_name" />
+          <ScalarProperty Name="customer_id" ColumnName="customer_id" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+  </EntityContainerMapping>
+</Mapping>

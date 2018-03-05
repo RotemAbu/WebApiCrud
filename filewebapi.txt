@@ -1,0 +1,60 @@
+Customer Id: 1234567
+Customer Name: rotem
+Car Id: 41
+Pick Up Date: 16/02/2018 22:00:00
+Drop Off Date: 21/02/2018 22:00:00
+//===============================//
+Customer Id: 9876543
+Customer Name: speed
+Car Id: 43
+Pick Up Date: 19/02/2018 22:00:00
+Drop Off Date: 22/02/2018 22:00:00
+//===============================//
+Customer Id: 58964721
+Customer Name: shani
+Car Id: 42
+Pick Up Date: 24/02/2018 22:00:00
+Drop Off Date: 27/02/2018 22:00:00
+//===============================//
+Customer Id: 56478921
+Customer Name: aviva
+Car Id: 58
+Pick Up Date: 16/02/2018 22:00:00
+Drop Off Date: 19/02/2018 22:00:00
+//===============================//
+Customer Id: 6564
+Customer Name: ghg
+Car Id: 41
+Pick Up Date: 17/02/2018 22:00:00
+Drop Off Date: 19/02/2018 22:00:00
+//===============================//
+Customer Id: 54341536
+Customer Name: dfg
+Car Id: 41
+Pick Up Date: 18/02/2018 22:00:00
+Drop Off Date: 19/02/2018 22:00:00
+//===============================//
+Customer Id: 45453
+Customer Name: gyjgy
+Car Id: 42
+Pick Up Date: 24/02/2018 22:00:00
+Drop Off Date: 25/02/2018 22:00:00
+//===============================//
+Customer Id: 4565
+Customer Name: dcfrgfg
+Car Id: 58
+Pick Up Date: 20/02/2018 22:00:00
+Drop Off Date: 27/02/2018 22:00:00
+//===============================//
+Customer Id: 566666656
+Customer Name: fth
+Car Id: 41
+Pick Up Date: 18/02/2018 22:00:00
+Drop Off Date: 20/02/2018 22:00:00
+//===============================//
+Customer Id: 1234567
+Customer Name: rotem
+Car Id: 57
+Pick Up Date: 18/02/2018 22:00:00
+Drop Off Date: 20/02/2018 22:00:00
+//===============================//

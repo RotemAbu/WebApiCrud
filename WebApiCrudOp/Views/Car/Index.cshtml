@@ -1,0 +1,318 @@
+﻿<head>
+    <link href="~/Content/bootstrap.min.css" rel="stylesheet" />
+</head>
+
+<style>
+
+    /*input.ng-invalid{
+        background-color: mistyrose; 
+    }*/
+    body{
+        background-color: lightsteelblue;
+    }
+</style>
+<div ng-app="myapp">
+    <div ng-controller="CarCtrl">
+        
+        <form name="frmCar" id="frmCar" class="form-horizontal row-border">
+            <br />
+            <button class="btn-primary" ng-click="FileLog()">Log File</button> 
+            <center>
+            @*<a href="/User/index" class="btn btn-primary margin-right-btn" >Sign In</a>*@
+                <button id="userReg"
+                        class="btn btn-primary margin-right-btn"
+                        data-toggle="modal" 
+                        data-target="#myModal2"  >
+                    Log In
+                </button>
+               </center>  
+              
+            @*<div data-ng-form name="frmCar">*@
+                <br />
+                <div class="col-md-12">
+                    <div class="form-group" ng-class="{ 'has-error' : frmCar.namemodel.$invalid && !frmCar.namemodel.$pristine }">
+                        <label class="col-md-4 control-label" for="input17"> Model Name:</label>
+                        <div class="col-md-7">
+                            <input type="text"
+                                   id="idmodel"
+                                   class="form-control"
+                                   name="namemodel" 
+                                   ng-model="model" required/>
+                            <span style="color:red" ng-show="frmCar.namemodel.$error.required">Please enter model of the car</span>
+                        </div>
+                    </div>
+                    <div class="form-group" ng-class="{ 'has-error' : frmCar.namecolor.$invalid && !frmCar.namecolor.$pristine}">
+                        <label class="col-md-4 control-label" for="input17">Color:</label>
+                        <div class="col-md-7">
+                            <input type="text"
+                                   id="idcolor"
+                                   class="form-control"
+                                   name="namecolor"
+                                   ng-model="color" required />
+                            <span style="color:red" ng-show="frmCar.namecolor.$error.required">Please enter color of the car</span>
+                        </div>
+                    </div>
+                    <div class="form-group" ng-class="{ 'has-error' : frmCar.namedoors_num.$invalid && !frmCar.namedoors_num.$pristine}">
+                        <label class="col-md-4 control-label" for="input17"> Doors Number:</label>
+                        <div class="col-md-7">
+                            <input type="number" numbers-only
+                                   id="iddoors_num"
+                                   class="form-control"
+                                   name="namedoors_num"
+                                   ng-model="doors_num" required />
+                            <span style="color:red" ng-show="frmCar.namedoors_num.$error.required ">Please enter number of doors in the car</span>
+                        </div>
+                    </div>
+                    <div class="form-group" ng-class="{ 'has-error' : frmCar.nameyear.$invalid && !frmCar.nameyear.$pristine }">
+                        <label class="col-md-4 control-label" for="input17"> Year:</label>
+                        <div class="col-md-7">
+                            <input type="number" numbers-only
+                                   id="idyear"
+                                   class="form-control"
+                                   name="nameyear"
+                                   ng-model="year" required />
+                            <span style="color:red" ng-show="frmCar.nameyear.$error.required ">Please enter year of the car</span>
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <div class="col-md-4">
+                        </div>
+                        <div class="col-md-7">
+                            <button id="save"
+                                    class="btn btn-success margin-right-btn"
+                                    ng-disabled="frmCar.$invalid"
+                                    ng-click="SaveUpdate()" >
+                                <i class="icon-save"></i> {{btnText}}
+                            </button>
+                        </div>
+                    </div>
+                </div>
+            <img src="/Photos/car_small.png" alt="Rotem Rent Cars"> <!-- add image(photo) and alternate text in case the picture does'nt show-->
+                <div class="clearfix"></div>
+                <hr />
+                <table class="table table-hover general-table">
+                    <thead class="grid-top-panel">
+                        <tr>
+                            <th style="display:none">car_id</th>
+                            <th>Model</th>
+                            <th>Color</th>
+                            <th>Doors Number</th>
+                            <th>year</th>
+                            <th>Action</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr ng-repeat="dataModel in cars">
+                            <td style="display:none">{{dataModel.car_id}}</td>
+                            <td> {{dataModel.model}}</td>
+                            <td> {{dataModel.color}}</td>
+                            <td>{{dataModel.doors_num}}</td>
+                            <td>{{dataModel.year}}</td>
+                            <td style="text-align:left; color:white">
+                                <span>
+                                    <span id="save"
+                                          class="btn btn-primary margin-right-btn"
+                                          ng-click="GetCarByID(dataModel)">
+                                        Edit
+                                    </span>
+                                </span>
+                            </td>
+                            <td style="text-align:left; color:white">
+                                <span>
+                                    <span id="save" 
+                                          class="btn btn-danger margin-right-btn" 
+                                          ng-click="DeleteCar(dataModel)">
+                                        Delete
+                                    </span>
+                                </span>
+                            </td>
+                            <td style="text-align:left; color:white">
+                                <span>
+                                    @*<button type="button" class="btn btn-xs" ng-click="editDialog.open(dataModel)">Edit...</button>*@                           
+                                <button id="rentcar" 
+                                        class="btn btn-primary margin-right-btn" 
+                                        data-toggle="modal" data-target="#myModal" 
+                                        ng-click="RentGetCarByID(dataModel); UserGetUByID(customer_id)" 
+                                        ng-disabled="dataModel.disabled">
+                                {{btnRentText}}
+                            </button>
+                            </span>
+                            </td>
+                        </tr>
+                    </tbody>
+                    <tfoot></tfoot>
+                </table>
+                <br />
+                <br />
+                @*<edit-rent-dialog model="editDialog"></edit-rent-dialog>*@
+                <div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+                    <div class="modal-dialog" role="document">
+                        <div class="modal-content">
+                            <div class="modal-header">
+                                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                <span aria-hidden="true">&times;</span></button>
+                                <h4 class="modal-title" id="myModalLabel">Rent Car Details</h4>
+                            </div>
+                            <div class="modal-body">
+                                <div class="form-group">
+                                    <label class="col-md-4 control-label" for="input17"> Car Number:</label>
+                                    <div class="col-md-7">
+                                        @*<input ng-model="model.dataModel.car_id" class="form-control" />*@
+                                        <input type="text"
+                                               id="idcar_id"
+                                               class="form-control"
+                                               name="namecar_id" 
+                                               ng-model="car_id" />
+                                    </div>
+                                </div>
+                                <div class="form-group">
+                                    <label class="col-md-4 control-label" for="input17"> Customer Id:</label>
+                                    <div class="col-md-7">
+                                        <input type="text"                                       
+                                               id="idcustomer_id"
+                                               class="form-control"
+                                               name="namecustomer_id"
+                                               ng-model="customer_id" />
+                                    </div>
+                                </div>
+                                <div class="form-group">
+                                    <label class="col-md-4 control-label" for="input17"> Customer Name:</label>
+                                    <div class="col-md-7">
+                                        <input type="text"
+                                               id="idcustomer_name"
+                                               class="form-control"
+                                               name="namecustomer_name" 
+                                               ng-model="customer_name" />
+                                    </div>
+                                </div>
+                                <div class="form-group">
+                                    <label class="col-md-4 control-label" for="input17"> Phone Number:</label>
+                                    <div class="col-md-7">
+                                        <input type="number" numbers-only  
+                                               id="idphone_num"
+                                               class="form-control"
+                                               name="namephone_num" 
+                                               ng-model="phone_num" />
+                                    </div>
+                                </div>
+                                <div class="form-group">
+                                    <label class="col-md-4 control-label" for="input17"> Pick-Up Date:</label>
+                                    <div class="col-md-7">
+                                        <input type="date"                                              
+                                               id="idpick_up_date" 
+                                               ng-disabled="disabled(dataModel,date,mode)"                                                                                                                                     
+                                               class="form-control"
+                                               name="namepick_up_date"
+                                               placeholder="yyyy-mm-dd" 
+                                               ng-model="pick_up_date" />
+                                    </div>
+                                </div>
+                                <div class="form-group">
+                                    <label class="col-md-4 control-label" for="input17"> Drop-Off Date:</label>
+                                    <div class="col-md-7">
+                                        <input type="date"
+                                               id="iddrop_off_date"
+                                               class="form-control"
+                                               name="namedrop_off_date"
+                                               placeholder="yyyy-mm-dd" 
+                                               ng-model="drop_off_date" />
+                                    </div>
+                                </div>                                                       
+                            </div>
+
+                            <div class="modal-footer">
+                                <button type="button" 
+                                        class="btn btn-success" 
+                                        id="btnSubmit1" 
+                                        data-dismiss="modal" 
+                                        ng-click="RentCar(dataModel)" 
+                                        ng-disabled="dataModel.disabled">Save Car Order                                   
+                                </button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+
+            <div class="modal fade" id="myModal2" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+                <div class="modal-dialog" role="document">
+                    <div class="modal-content">
+                        <div class="modal-header">
+                            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                <span aria-hidden="true">&times;</span>
+                            </button>
+                            <h4 class="modal-title" id="myModalLabel"></h4>
+                        </div>
+                        <div class="modal-body">
+                            <div class="col-md-10 col-md-offset-1">
+                                <div class="well">
+                                    <table class="table table-bordered">
+                                        <thead>
+                                            <tr class="success">
+                                                <th colspan="2">
+                                                    User Enter System
+                                                    <button class="btn btn-success pull-right" 
+                                                            data-dismiss="modal" 
+                                                            ng-click="SignUp()">Sign Up</button>
+                                                </th>
+                                            </tr>
+                                        </thead>
+                                        <tr>
+                                            <td>User Id: </td>
+                                            <td>
+                                                <input type="number" numbers-only
+                                                       id="idcustomer_id"
+                                                       placeholder="user id" 
+                                                       ng-model="customer_id" />
+                                            </td>
+                                        </tr>
+                                        <tr>
+                                        <tr>
+                                            <td>User Name: </td>
+                                            <td>
+                                                <input type="text" 
+                                                       id="idcustomer_name" 
+                                                       placeholder="user name" 
+                                                       ng-model="customer_name" />
+                                            </td>
+                                        </tr>
+                                        <tr>
+                                            <td>Password: </td>
+                                            <td>
+                                                <input type="password" 
+                                                       id="idpassword" 
+                                                       placeholder="password" 
+                                                       ng-model="password" />
+                                            </td>
+                                        </tr>
+                                        <tr class="success">
+                                            <td colspan="2">
+                                                <input id="btnRegister" 
+                                                       class="btn btn-success" 
+                                                       type="button" 
+                                                       data-dismiss="modal" 
+                                                       ng-click="SignIn()" 
+                                                       value="Login" />
+                                            </td>
+                                        </tr>
+                                    </table>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="modal-footer">
+                            @*<button type="button" class="btn btn-success" id="btnSubmit2" data-dismiss="modal" ng-click="RentCar(dataModel)">
+                                Register
+                            </button>*@
+                        </div>
+                    </div>
+                </div>
+            </div>
+</form>
+
+    </div>
+</div>
+<script src="~/Scripts/angular.min.js"></script>
+<script src="~/ScriptsNg/Module/app.js"></script>
+<script src="~/ScriptsNg/Controller/CarCtrl.js"></script>
+<script src="~/ScriptsNg/Services/CrudService.js"></script>
